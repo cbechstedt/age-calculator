@@ -1,13 +1,20 @@
 package com.betrybe.calcuradoradeidade.service;
 
-/**
- * Aqui nessa classe devem ser implementados os métodos para atender aos requisitos do exercício,
- * sinta-se à vontade para criar métodos privados para te auxiliar nas validações.
- */
+import java.time.LocalDate;
+import java.time.Period;
+import org.springframework.stereotype.Service;
+
+@Service
 public class AgeCalculatorService {
+
+  /**
+   * calculateAge.
+   */
   public int calculateAge(String date) {
-    // TODO method implementation
-    return -1;
+    LocalDate today = LocalDate.now();
+    LocalDate dateParsed = LocalDate.parse(date);
+    Period period = Period.between(dateParsed, today);
+    return period.getYears();
   }
 
   public int calculateAgeWithDefault(String date, int defaultAge) {
