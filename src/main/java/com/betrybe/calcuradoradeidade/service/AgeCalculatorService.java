@@ -28,6 +28,9 @@ public class AgeCalculatorService {
     return period.getYears();
   }
 
+  /**
+   * validateDatePattern.
+   */
   public void validateDatePattern(String date) {
     String datePattern = "\\d{4}-\\d{2}-\\d{2}";
     Pattern pattern = Pattern.compile(datePattern);
