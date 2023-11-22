@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/calculateAge")
 public class AgeCalculatorController implements AgeCalculatorControllerInterface {
 
-  private AgeCalculatorService ageCalculatorService;
+  private final AgeCalculatorService ageCalculatorService;
 
   @Autowired
   public AgeCalculatorController(AgeCalculatorService ageCalculatorService) {
