@@ -2,6 +2,7 @@ package com.betrybe.calcuradoradeidade.service;
 
 import com.betrybe.calcuradoradeidade.exception.FutureDateException;
 import com.betrybe.calcuradoradeidade.exception.InvalidSyntaxDateException;
+import com.betrybe.calcuradoradeidade.exception.NonNumericDateException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.regex.Matcher;
@@ -18,6 +19,7 @@ public class AgeCalculatorService {
    * calculateAge.
    */
   public int calculateAge(String date) {
+    validateNumericDate(date);
     validateDatePattern(date);
     LocalDate today = LocalDate.now();
     LocalDate dateParsed = LocalDate.parse(date);
@@ -39,6 +41,18 @@ public class AgeCalculatorService {
 
     if (!isValid) {
       throw new InvalidSyntaxDateException("Invalid date format. Expected aa-mm-dd.");
+    }
+  }
+
+  /**
+   * validateNumericDate.
+   */
+  public void validateNumericDate(String date) {
+    Pattern pattern = Pattern.compile("[a-zA-Z]");
+    Matcher matcher = pattern.matcher(date);
+    boolean isValid = matcher.find();
+    if (isValid) {
+      throw new NonNumericDateException("Date should be in numeric format.");
     }
   }
 
