@@ -56,8 +56,14 @@ public class AgeCalculatorService {
     }
   }
 
+  /**
+   * calculateAgeWithDefault.
+   */
   public int calculateAgeWithDefault(String date, int defaultAge) {
-    // TODO method implementation
-    return -1;
+    try {
+      return calculateAge(date);
+    } catch (FutureDateException | NonNumericDateException | InvalidSyntaxDateException e) {
+      return defaultAge;
+    }
   }
 }

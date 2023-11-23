@@ -26,6 +26,11 @@ public class AgeCalculatorController implements AgeCalculatorControllerInterface
   @GetMapping
   @Override
   public ResponseEntity<DateDto> calculateAge(String date, String orDefaultAge) {
+    if (orDefaultAge != null) {
+      int age = ageCalculatorService.calculateAgeWithDefault(date, Integer.parseInt(orDefaultAge));
+      return ResponseEntity.ok(new DateDto(age));
+    }
+
     int age = ageCalculatorService.calculateAge(date);
     return ResponseEntity.ok(new DateDto(age));
   }
